@@ -6,7 +6,10 @@ import json
 import datetime
 import csv
 import time
-
+# encoding=utf8
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 file_id ="page_name"
 
@@ -55,11 +58,9 @@ def getFacebookCommentFeedData(status_id, access_token, num_comments):
 def processFacebookComment(comment, status_id, parent_id = ''):    
 
     comment_id = comment['id']
-    comment_message = '' if 'message' not in comment else \
-            unicode_normalize(comment['message'])
-    comment_author = unicode_normalize(comment['from']['name'])
-    comment_likes = 0 if 'like_count' not in comment else \
-            comment['like_count']
+    comment_message = '' if 'message' not in comment else comment['message']
+    comment_author = comment['from']['name']
+    comment_likes = 0 if 'like_count' not in comment else comment['like_count']
 
     if 'attachment' in comment:
         attach_tag = "[[%s]]" % comment['attachment']['type'].upper()
