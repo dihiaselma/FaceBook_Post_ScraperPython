@@ -42,7 +42,7 @@ def unicode_normalize(text):
     return text.encode('utf-8')
 
 
-
+#This URL used to gather messages
 def getFacebookPageFeedData(page_id, access_token):
 
     base = "https://graph.facebook.com/"
@@ -57,7 +57,7 @@ def getFacebookPageFeedData(page_id, access_token):
     return data
 
 
-
+#Get the diffrents fields of a given message
 def processFacebookPageFeedStatus(message, access_token,conversation_key):
 
     conversation_id = conversation_key
@@ -81,7 +81,7 @@ def processFacebookPageFeedStatus(message, access_token,conversation_key):
     return (conversation_id,message_id, message_fromName,message_fromEmail,message_fromId, message_created_date, message_body,message_toName,message_toEmail,message_toId)
 
 
-
+#read the messages than write them into a csv file
 def scrapeFacebookPageFeedStatus(page_id, access_token):
 
     with open('Brandt.dz_facebook_messages.csv', 'wb') as file:
